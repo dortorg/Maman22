@@ -61,11 +61,8 @@ extern void mult_comp_comp(complex *cpA, complex *cpB);
 /*return the absolute value of complex number*/
 extern void abs_comp(complex *cp);
 
-extern complex* create();
-
 static const struct
 {
-	complex* (*create)();
 	void (*abs_comp)(complex *cp);
 	void (*mult_comp_comp)(complex *cpA, complex *cpB);
 	void (*mult_comp_img)(complex *cp, double scalar);
@@ -75,7 +72,6 @@ static const struct
 	void (*print_comp)(complex *cp);
 
 }COMPLEX = {
-		create,
 		abs_comp,
 		mult_comp_comp,
 		mult_comp_img,

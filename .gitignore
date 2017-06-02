@@ -4,3 +4,4 @@ main.o
 .settings/
 .cproject
 .project
+/Debug/

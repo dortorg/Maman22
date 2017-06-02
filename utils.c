@@ -5,8 +5,13 @@
  *      Author: Dor
  */
 
+#include "utils.h"
 
-void screen_example()
+
+
+
+
+void menu()
 {
 	printf("Please enter valid function name and suitable parameters\n");
 	printf( "Available functions:\n");
@@ -18,8 +23,18 @@ void screen_example()
 	printf("mult_comp_img       [complex number],[scalar]\n");
 	printf("mult_comp_comp      [complex number],[complex number]\n");
 	printf("abs_comp            [complex number]\n");
-	printf("halt                [none]");
+	printf("halt                [none]\n");
 
+}
+
+void init_complexs()
+{
+	int i;
+	for(i = 0; i < SIZE; ++i)
+	{
+		storage[i].var->img = 0;
+		storage[i].var->real = 0;
+	}
 }
 
 void print_error(char* error)
