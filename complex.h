@@ -1,25 +1,89 @@
 /*
- * complex.h
- *
- *  Created on: May 24, 2017
- *      Author: Dor
+ * =========================================================================================
+ * name        : mmn_22/main.c
+ * author      : Ariel Mashraki, ID 301......
+ * email       : ariel@.....
+ * description : description....
+ * =========================================================================================
  */
 
-#ifndef COMPLEX_H_
-#define COMPLEX_H_
+#ifndef complex_H_
+#define complex_H_
 
-typedef struct complex
+/*#define ....*/
+
+typedef struct complex{
+    double real, img;
+} complex;
+
+/*extern global variables*/
+extern complex a,b,c,d,e,f;
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>> FUNCTION DECLARTION >>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/*
+ *set complex variable with
+ *params: pointer to complex, double a, double b
+ */
+extern void read_comp(complex *cp, double a, double b);
+
+
+/*
+ *print complex variable
+ *params: pointer to complex
+ *example: (a+bi) ===> 2.31 + 4.05i
+ */
+extern void print_comp(complex *cp);
+
+/*add two complex numbers
+ *and print the sum of them
+ */
+extern void add_comp(complex *cpA, complex *cpB);
+
+/*subtract two complex numbers
+ *and print the sum of them
+ */
+extern void sub_comp(complex *cpA, complex *cpB);
+
+/*multiple complex number with real number scalar
+ *argument and print the result*/
+extern void mult_comp_real(complex *cp, double scalar);
+
+/*multiple complex number with img number scalar
+ *argument and print the result*/
+extern void mult_comp_img(complex *cp, double scalar);
+
+/*multiple complex number with complex number
+ *argument and print the result*/
+extern void mult_comp_comp(complex *cpA, complex *cpB);
+
+
+/*return the absolute value of complex number*/
+extern void abs_comp(complex *cp);
+
+extern complex* create();
+
+static const struct
 {
-	int sign;
-	double imaginary;
-	double real;
-}complex;
+	complex* (*create)();
+	void (*abs_comp)(complex *cp);
+	void (*mult_comp_comp)(complex *cpA, complex *cpB);
+	void (*mult_comp_img)(complex *cp, double scalar);
+	void (*mult_comp_real)(complex *cp, double scalar);
+	void (*sub_comp)(complex *cpA, complex *cpB);
+	void (*add_comp)(complex *cpA, complex *cpB);
+	void (*print_comp)(complex *cp);
 
-/*errors*/
-#define MISSING_HALT "Missing halt in the end of the file"
+}COMPLEX = {
+		create,
+		abs_comp,
+		mult_comp_comp,
+		mult_comp_img,
+		mult_comp_real,
+		sub_comp,
+		add_comp,
+		print_comp
+};
 
 
-/*char* errors[] = {"Invalid complex variable", "Invalid command", "Missing comma", "Wrong parameter"};*/
-
-#endif /* COMPLEX_H_ */
-
+#endif /* complex_H_ */
