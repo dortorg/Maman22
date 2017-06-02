@@ -1,3 +1,6 @@
+utils.o
+complex.o
+main.o
 .settings/
 .cproject
 .project
