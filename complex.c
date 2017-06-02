@@ -1,6 +1,9 @@
 
 
 #include "complex.h"
+#include <malloc.h>
+#include <stdio.h>
+#include <math.h>
 
 /*all functions in header file*/
 
@@ -90,16 +93,6 @@ void abs_comp(complex *cp)
     double absolue = sqrt( (pow((*cp).real, 2)) + (pow((*cp).img, 2)) );
     printf("The Absolute value of your variable is: %.2f\n", absolue);
 }
-
-
-complex* create()
-{
-	complex *comp = (complex*)malloc(sizeof(complex));
-	comp->real = 0;
-	comp->img = 0;
-	return comp;
-}
-
 
 
 
