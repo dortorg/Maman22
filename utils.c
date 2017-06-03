@@ -33,7 +33,7 @@ int enter_command(char* command)
 	printf("fgets\n");
 	fgets(command, 30, stdin);
 	printf("puts\n");
-	return 	puts(command);
+	return 	1;//puts(command);
 }
 
 void init_complexs()
