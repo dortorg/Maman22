@@ -27,7 +27,7 @@ int main()
 			exit(1);
 		}
 		printf("command: %s\n", comm.command);
-		printf("args: %s\n", comm.args);
+		printf("args: %p\n", comm.args);
 	}
 	if(strcmp(comm.command, commands[HALT]) != 0)
 	{

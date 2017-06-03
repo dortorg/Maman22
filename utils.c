@@ -36,13 +36,11 @@ int enter_command(command* command)
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
-		token = strtok(str, " ");
+		token = strtok(str, " \n");
 		strcpy(command->command, token);
-		printf("%d \n", strlen(command->command));
 		token = strtok(NULL, "\n");
 		if(token != NULL)
 		{
-			printf("here");
 			strcpy(command->args, token);
 		}
 		else
@@ -50,7 +48,7 @@ int enter_command(command* command)
 			strcpy(command->args, "\0");
 		}
 		printf("command: %s\n", command->command);
-		printf("args: %s\n", command->args);
+		printf("args: %p\n", command->args);
 		/*token = strtok(str, "\n\t ");
 		strcpy(command->command, token);
 		token = strtok(NULL, "\n\t ");
