@@ -36,7 +36,7 @@ int enter_command(command* command)
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
-		strcpy(&command->command ,strtok_r (str, " ", &command->args));
+		command->command = strtok_r (str, " ", &command->args);
 		printf("command: %s\n", command->command);
 		printf("args: %s\n", command->args);
 		/*token = strtok(str, "\n\t ");
