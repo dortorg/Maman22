@@ -27,7 +27,7 @@ void menu()
 
 }
 
-int enter_command(char** command)
+char* enter_command(char** command)
 {
 	printf("Enter command: \n");
 
