@@ -36,13 +36,14 @@ int enter_command(command* command)
 	flag = scanf("%s", str);
 	if(flag != EOF)
 	{
-		int inputLength = strlen(str);
+		printf("%s\n",str);
+		/*int inputLength = strlen(str);
 		char *inputCopy = (char*) calloc(inputLength + 1, sizeof(char));
 		strncpy(inputCopy, str, inputLength);
 
 		command->command = strtok_r (inputCopy, " ", &command->args);
 		printf("command: %s\n", command->command);
-		printf("args: %s\n", command->args);
+		printf("args: %s\n", command->args);*/
 	/*	token = strtok(str, "\n\t ");
 		strcpy(command->command, token);
 		token = strtok(NULL, "\n\t ");
