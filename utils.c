@@ -33,8 +33,9 @@ int enter_command(command* command)
 	char str[30];
 	printf("Enter command: \n");
 	flag = scanf("%s", str);
-	strcpy(command->command ,strtok(str, "\n\t"));
-	if(strlen(str) == strlen(command->command))
+	strcpy(command->command ,strtok(str, "\n\t "));
+	strcpy(command->args ,strtok(NULL, ""));
+/*	if(strlen(str) == strlen(command->command))
 	{
 		strcpy(command->args, "\0");
 	}
@@ -42,7 +43,7 @@ int enter_command(command* command)
 	{
 		strcpy(command->args, str + strlen(command->command));
 
-	}
+	}*/
 	return 	flag;
 }
 
