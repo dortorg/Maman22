@@ -60,6 +60,7 @@ void handle_command(command command)
     /*through over all command list*/
     for(i=0; cmd[i].func != NULL; i++)
     {
+    	printf("dor   %s\n",command.command);
         if(strcmp(command.command, cmd[i].name) == 0)
         {
         	execute(cmd[i], command);
