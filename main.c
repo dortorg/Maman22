@@ -15,11 +15,10 @@
 int main()
 {
 	char command[30];
-	char* flag = NULL;
 	menu();
 	init_complexs();
-	flag = enter_command((char**)&command);
-	while(flag != NULL)
+
+	while(enter_command((char**)&command) != NULL)
 	{
 		if(strcmp(command, commands[HALT]) == 0)
 		{
@@ -27,7 +26,6 @@ int main()
 			exit(1);
 		}
 		printf("%s\n", command);
-		flag = enter_command((char**)&command);
 	}
 	if(strcmp(command, commands[HALT]) != 0)
 	{
