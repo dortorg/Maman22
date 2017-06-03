@@ -22,7 +22,7 @@ int main()
 	{
 		if(strcmp(command, commands[HALT]) == 0)
 		{
-			printf("Bye bye!n");
+			printf("Bye bye!!\n");
 			exit(1);
 		}
 		printf("%s\n", command);
