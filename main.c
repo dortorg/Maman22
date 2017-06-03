@@ -20,8 +20,13 @@ int main()
 	init_complexs();
 	flag = scanf("%s",command);
 
-	while(flag != -1 || strcmp(command, commands[HALT]) == 0)
+	while(flag != EOF)
 	{
+		if(strcmp(command, commands[HALT]) == 0)
+		{
+			printf("dorrrrr\n");
+			exit(1);
+		}
 		printf("%s\n", command);
 		flag = scanf("%s",command);
 	}
