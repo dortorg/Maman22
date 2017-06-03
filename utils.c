@@ -49,6 +49,7 @@ int enter_command(command* command)
 		strcpy(command->command, token);
 		token = strtok(NULL, "\n\t ");
 		strcpy(command->args, token);*/
+		flag = 1;
 	}
 	return 	flag;
 }
