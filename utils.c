@@ -48,11 +48,7 @@ int enter_command(command* command)
 			strcpy(command->args, "\0");
 		}
 		printf("command: %s\n", command->command);
-		printf("args: %p\n", command->args);
-		/*token = strtok(str, "\n\t ");
-		strcpy(command->command, token);
-		token = strtok(NULL, "\n\t ");
-		strcpy(command->args, token);*/
+		printf("args: %s\n", command->args);
 		flag = 1;
 	}
 	return 	flag;
