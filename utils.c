@@ -38,6 +38,7 @@ int enter_command(command* command)
 	{
 		token = strtok(str, " ");
 		strcpy(command->command, token);
+		printf("%d \n", strlen(command->command));
 		strcpy(command->args, str + strlen(command->command) - 1);
 		printf("command: %s\n", command->command);
 		printf("args: %s\n", command->args);
