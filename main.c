@@ -21,13 +21,7 @@ int main()
 
 	while(enter_command(&comm) != EOF)
 	{
-		if(strcmp(comm.command, commands[HALT]) == 0)
-		{
-			printf("Bye bye!!\n");
-			exit(1);
-		}
-		printf("command: %s\n", comm.command);
-		printf("args: %s\n", comm.args);
+		handle_command(comm);
 	}
 	if(strcmp(comm.command, commands[HALT]) != 0)
 	{

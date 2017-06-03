@@ -60,7 +60,7 @@ extern void mult_comp_comp(complex *cpA, complex *cpB);
 /*return the absolute value of complex number*/
 extern void abs_comp(complex *cp);
 
-static const struct
+/*static const struct
 {
 	void (*abs_comp)(complex *cp);
 	void (*mult_comp_comp)(complex *cpA, complex *cpB);
@@ -78,7 +78,7 @@ static const struct
 		sub_comp,
 		add_comp,
 		print_comp
-};
+};*/
 
 
 #endif /* complex_H_ */

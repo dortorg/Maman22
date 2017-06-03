@@ -47,12 +47,41 @@ int enter_command(command* command)
 		{
 			strcpy(command->args, "\0");
 		}
-		printf("command: %s\n", command->command);
-		printf("args: %s\n", command->args);
 		flag = 1;
 	}
 	return 	flag;
 }
+
+void handle_command(command command)
+{
+	int i;
+
+	halt(command.command);
+    /*through over all command list*/
+    for(i=0; cmd[i].func != NULL; i++)
+    {
+        if(strcmp(command.command, cmd[i].name) == 0)
+        {
+        	printf("fine!!!\n");
+        }
+        else
+        {
+        	print_error(NOT_EXIST);
+        	break;
+        }
+    }
+
+}
+
+void halt(char* command)
+{
+	if(strcmp(command, commands[HALT]) == 0)
+	{
+		printf("Bye bye!!\n");
+		exit(1);
+	}
+}
+
 
 void init_complexs()
 {

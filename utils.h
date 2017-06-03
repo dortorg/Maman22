@@ -18,8 +18,22 @@ complex a,b,c,d,e,f;
 
 static char* commands[] = {"read_comp", "print_comp", "add_comp", "sub_comp", "mult_comp_real",
 		"mult_comp_img", "mult_comp_comp", "abs_comp", "halt"};
-
-
+enum inputParams       {VAR, ARGS, SCALAR, NONE};
+static struct {
+    char *name;
+    void (*func)();
+    int funcParam;
+}cmd[] = {
+    {"read_comp", read_comp, ARGS},
+    {"print_comp", print_comp, NONE},
+    {"add_comp", add_comp, VAR},
+    {"sub_comp", sub_comp, VAR},
+    {"mult_comp_real", mult_comp_real, SCALAR},
+    {"mult_comp_img", mult_comp_img, SCALAR},
+    {"mult_comp_comp", mult_comp_comp, VAR},
+    {"abs_comp", abs_comp, NONE},
+    {"not_valid", NULL, NONE}
+};
 
 /*List: Errors*/
 static char *errorMsgs[] = {
@@ -76,5 +90,8 @@ void init_complexs();
 
 void print_error(int error);
 
+void handle_command(command command);
+
+void halt(char* command);
 
 #endif /* UTILS_H_ */
