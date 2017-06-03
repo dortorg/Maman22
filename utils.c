@@ -27,11 +27,11 @@ void menu()
 
 }
 
-char* enter_command(char** command)
+int enter_command(char** command)
 {
 	printf("Enter command: \n");
-
-	return fgets(*command, 30, stdin);
+	fgets(*command, 30, stdin);
+	return 	puts(*command);
 }
 
 void init_complexs()
