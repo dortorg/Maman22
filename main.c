@@ -16,12 +16,15 @@ int main()
 {
 	char command[30];
 	int flag = 0;
+	menu();
+	init_complexs();
 	flag = scanf("%s",command);
 
 	while(flag != -1 || strcmp(command, commands[HALT]) == 0)
 	{
 		printf("%s\n", command);
-		flag = scanf("%s",command);	}
+		flag = scanf("%s",command);
+	}
 	if(strcmp(command, commands[HALT]) != 0)
 	{
 		print_error(MISSING_HALT);
