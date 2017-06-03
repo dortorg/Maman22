@@ -18,8 +18,7 @@ int main()
 	int flag = 0;
 	menu();
 	init_complexs();
-	flag = scanf("%s",command);
-
+	flag = enter_command((char**)&command);
 	while(flag != EOF)
 	{
 		if(strcmp(command, commands[HALT]) == 0)
@@ -28,7 +27,7 @@ int main()
 			exit(1);
 		}
 		printf("%s\n", command);
-		flag = scanf("%s",command);
+		flag = enter_command((char**)&command);
 	}
 	if(strcmp(command, commands[HALT]) != 0)
 	{

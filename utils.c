@@ -27,6 +27,13 @@ void menu()
 
 }
 
+int enter_command(char** command)
+{
+	printf("Enter command: \n");
+
+	return scanf("%s", *command);
+}
+
 void init_complexs()
 {
 	int i;
