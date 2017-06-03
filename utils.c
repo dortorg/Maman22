@@ -27,7 +27,7 @@ void menu()
 
 }
 
-int enter_command(char* command, char *args)
+int enter_command(command* command)
 {
 	int flag = EOF;
 	char str[30];
@@ -38,9 +38,9 @@ int enter_command(char* command, char *args)
 	{
 		printf("%s\n",str);
 
-		command = strtok_r (str, " ", &args);
-		printf("command: %s\n", command);
-		printf("args: %s\n", args);
+		strcpy(command->command ,strtok_r (str, " ", &command->args[0]));
+		printf("command: %s\n", command->command);
+		printf("args: %s\n", command->args);
 		/*token = strtok(str, "\n\t ");
 		strcpy(command->command, token);
 		token = strtok(NULL, "\n\t ");

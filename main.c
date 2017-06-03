@@ -19,7 +19,7 @@ int main()
 	menu();
 	init_complexs();
 
-	while(enter_command(comm.command, comm.args) != EOF)
+	while(enter_command(&comm) != EOF)
 	{
 		if(strcmp(comm.command, commands[HALT]) == 0)
 		{

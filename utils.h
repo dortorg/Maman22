@@ -43,8 +43,8 @@ enum error_id
 
 typedef struct command
 {
-	char* command;
-	char* args;
+	char* command[10];
+	char* args[20];
 }command;
 
 static struct {
@@ -70,7 +70,7 @@ enum commands_id
 
 void menu();
 
-int enter_command(char* command, char *args);
+int enter_command(command* command);
 
 void init_complexs();
 
