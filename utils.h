@@ -32,9 +32,14 @@ static char *errorMsgs[] = {
     "*ERROR: missing comma\n",
 	"*ERROR: multiple consecutive commas\n",
 	"*ERROR: excessive text\n",
-	"*ERROR: not end with handle\n",
+	"*ERROR: not end with halt\n",
 };
 
+enum error_id
+{
+	NOT_EXIST, INVALID_COMPLEX, INVALID_COMMAND, WORNG_PARAMETER_1, WORNG_PARAMETER_2_COMPLEX,
+	WORNG_PARAMETER_2_REAL, MISSING_COMMA, MULTIPLE_COMMAS, EXCESSIVE_TEXT, MISSING_HALT
+};
 
 static struct {
    char *name;
@@ -49,11 +54,7 @@ static struct {
    {"0", NULL}
 };
 
-enum error_id
-{
-	NOT_EXIST, INVALID_COMPLEX, INVALID_COMMAND, WORNG_PARAMETER_1, WORNG_PARAMETER_2_COMPLEX,
-	WORNG_PARAMETER_2_REAL, MISSING_COMMA, EXCESSIVE_TEXT, MISSING_HALT
-};
+
 
 enum commands_id
 {
