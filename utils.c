@@ -29,12 +29,13 @@ void menu()
 
 int enter_command(command* command)
 {
-	int flag = 0;
+	int flag = EOF;
 	char str[30];
 	char* token;
 	printf("Enter command: \n");
-	flag = scanf("%s", str);
-	if(flag != EOF)
+	;
+	//flag = scanf("%s", str);
+	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
 		printf("%s\n",str);
 		/*int inputLength = strlen(str);
