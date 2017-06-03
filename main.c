@@ -21,6 +21,8 @@ int main()
 
 	while(enter_command(&comm) != EOF)
 	{
+    	printf("main   %s\n",comm.command);
+
 		handle_command(comm);
 	}
 	if(strcmp(comm.command, commands[HALT]) != 0)
