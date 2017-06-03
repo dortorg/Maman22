@@ -70,7 +70,7 @@ enum commands_id
 
 void menu();
 
-int enter_command(command* command);
+int enter_command(char* command, char *args);
 
 void init_complexs();
 

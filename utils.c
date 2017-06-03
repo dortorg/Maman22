@@ -7,7 +7,7 @@
 
 #include "utils.h"
 #include <string.h>
-
+#include <memory.h>
 
 
 
@@ -27,24 +27,20 @@ void menu()
 
 }
 
-int enter_command(command* command)
+int enter_command(char* command, char *args)
 {
 	int flag = EOF;
 	char str[30];
-	char* token;
+
 	printf("Enter command: \n");
-	;
-	//flag = scanf("%s", str);
+
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
 		printf("%s\n",str);
-		int inputLength = strlen(str);
-		char *inputCopy = (char*) calloc(inputLength + 1, sizeof(char));
-		strncpy(inputCopy, str, inputLength);
 
-		command->command = strtok_r (inputCopy, " ", &command->args);
-		printf("command: %s\n", command->command);
-		printf("args: %s\n", command->args);
+		command = strtok_r (str, " ", &args);
+		printf("command: %s\n", command);
+		printf("args: %s\n", args);
 		/*token = strtok(str, "\n\t ");
 		strcpy(command->command, token);
 		token = strtok(NULL, "\n\t ");
