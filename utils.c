@@ -34,23 +34,19 @@ int enter_command(command* command)
 	char* token;
 	printf("Enter command: \n");
 	flag = scanf("%s", str);
-	int inputLength = strlen(str);
-
-	printf("size: %d\n", inputLength);
-
-	token = strtok(str, "\n\t ");
-	strcpy(command->command, token);
-	token = strtok(NULL, "\n\t ");
-	strcpy(command->args, token);
-/*	if(strlen(str) == strlen(command->command))
+	if(flag != EOF)
 	{
-		strcpy(command->args, "\0");
+		int inputLength = strlen(str);
+		char *inputCopy = (char*) calloc(inputLength + 1, sizeof(char));
+		strncpy(inputCopy, str, inputLength);
+
+		command->command = strtok_r (inputCopy, " ", &command->args);
+
+	/*	token = strtok(str, "\n\t ");
+		strcpy(command->command, token);
+		token = strtok(NULL, "\n\t ");
+		strcpy(command->args, token);*/
 	}
-	else
-	{
-		strcpy(command->args, str + strlen(command->command));
-
-	}*/
 	return 	flag;
 }
 
