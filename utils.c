@@ -42,6 +42,7 @@ int enter_command(command* command)
 		token = strtok(NULL, "\n");
 		if(token != NULL)
 		{
+			printf("here");
 			strcpy(command->args, token);
 		}
 		else
