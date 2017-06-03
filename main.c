@@ -22,10 +22,10 @@ int main()
 	{
 		if(strcmp(command, commands[HALT]) == 0)
 		{
-			printf("dorrrrr\n");
+			printf("Bye bye!n");
 			exit(1);
 		}
-		printf("dor %s\n", command);
+		printf("%s\n", command);
 	}
 	if(strcmp(command, commands[HALT]) != 0)
 	{
