@@ -62,16 +62,52 @@ void handle_command(command command)
     {
         if(strcmp(command.command, cmd[i].name) == 0)
         {
-        	printf("fine!!!\n");
-        	break;
-        }
-        else
-        {
-        	print_error(NOT_EXIST);
+        	execute(cmd[i], command);
         	break;
         }
     }
+    if(cmd[i].func == NULL)
+    {
+    	print_error(NOT_EXIST);
+    }
 
+}
+
+int check_none_args(char* args)
+{
+
+}
+
+void execute_none(char* args,  void (*func)())
+{
+	int i;
+	if(check_none_args(args) == TRUE)
+	{
+		for(i = 0; storage[i].var != NULL; ++i)
+		{
+			if(strcmp(storage[i].name, args) == 0)
+			{
+				func(storage[i].var);
+				break;
+			}
+		}
+	}
+}
+
+void execute(struct cmd cmd, command com)
+{
+	switch(cmd.funcParam)
+	{
+	case NONE:
+		execute_none(com.args, cmd.func);
+		break;
+	case VAR:
+		break;
+	case ARGS:
+		break;
+	case SCALAR:
+		break;
+	}
 }
 
 void halt(char* command)

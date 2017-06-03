@@ -19,7 +19,7 @@ complex a,b,c,d,e,f;
 static char* commands[] = {"read_comp", "print_comp", "add_comp", "sub_comp", "mult_comp_real",
 		"mult_comp_img", "mult_comp_comp", "abs_comp", "halt"};
 enum inputParams       {VAR, ARGS, SCALAR, NONE};
-static struct {
+static struct cmd{
     char *name;
     void (*func)();
     int funcParam;
@@ -74,7 +74,7 @@ static struct {
    {"0", NULL}
 };
 
-
+typedef enum Bool{FALSE, TRUE};
 
 enum commands_id
 {
@@ -93,5 +93,12 @@ void print_error(int error);
 void handle_command(command command);
 
 void halt(char* command);
+
+void execute_none(char* args,  void (*func)());
+
+void execute(struct cmd cmd, command com);
+
+int check_none_args(char* args);
+
 
 #endif /* UTILS_H_ */
