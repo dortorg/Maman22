@@ -34,6 +34,10 @@ int enter_command(command* command)
 	char* token;
 	printf("Enter command: \n");
 	flag = scanf("%s", str);
+	int inputLength = strlen(str);
+
+	printf("size: %d\n", inputLength);
+
 	token = strtok(str, "\n\t ");
 	strcpy(command->command, token);
 	token = strtok(NULL, "\n\t ");
