@@ -63,6 +63,7 @@ void handle_command(command command)
         if(strcmp(command.command, cmd[i].name) == 0)
         {
         	printf("fine!!!\n");
+        	break;
         }
         else
         {
