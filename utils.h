@@ -63,7 +63,7 @@ enum commands_id
 
 void menu();
 
-char* enter_command(char* command);
+int enter_command(char* command);
 
 void init_complexs();
 

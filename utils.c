@@ -27,11 +27,11 @@ void menu()
 
 }
 
-char* enter_command(char* command)
+int enter_command(char* command)
 {
-	char flag[10] = NULL;
+	int flag = 0;
 	printf("Enter command: \n");
-	flag = fgets(command, 30, stdin);
+	flag = scanf("%s", command);
 	command = strtok(command, "\n\t");
 	return 	flag;//puts(command);
 }
