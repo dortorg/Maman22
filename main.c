@@ -25,7 +25,7 @@ int main()
 			printf("dorrrrr\n");
 			exit(1);
 		}
-		printf("%s\n", command);
+		printf("dor %s\n", command);
 	}
 	if(strcmp(command, commands[HALT]) != 0)
 	{
