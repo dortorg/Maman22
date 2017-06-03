@@ -31,6 +31,7 @@ int enter_command(char* command)
 {
 	printf("Enter command: \n");
 	fgets(command, 30, stdin);
+	command = strtok(command, "\n\t");
 	return 	1;//puts(command);
 }
 
