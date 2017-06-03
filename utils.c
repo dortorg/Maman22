@@ -37,7 +37,7 @@ void init_complexs()
 	}
 }
 
-void print_error(char* error)
+void print_error(int error)
 {
-	printf("ERROR: %s\n", error);
+	printf("ERROR: %s\n",errorMsgs[error]);
 }

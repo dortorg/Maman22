@@ -27,7 +27,6 @@ extern complex a,b,c,d,e,f;
  */
 extern void read_comp(complex *cp, double a, double b);
 
-
 /*
  *print complex variable
  *params: pointer to complex
@@ -47,11 +46,11 @@ extern void sub_comp(complex *cpA, complex *cpB);
 
 /*multiple complex number with real number scalar
  *argument and print the result*/
-extern void mult_comp_real(complex *cp, double scalar);
+extern void mult_comp_real(complex *cp, double real);
 
 /*multiple complex number with img number scalar
  *argument and print the result*/
-extern void mult_comp_img(complex *cp, double scalar);
+extern void mult_comp_img(complex *cp, double img);
 
 /*multiple complex number with complex number
  *argument and print the result*/

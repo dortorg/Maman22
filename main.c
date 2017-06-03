@@ -14,19 +14,18 @@
 
 int main()
 {
+	char command[30];
+	int flag = 0;
+	flag = scanf("%s",command);
 
-/*	unsigned int read;
-	char* line = NULL;
-	size_t len = 0;
-	while(read != -1 || strcmp(line, commands[HALT]) == 0)
+	while(flag != -1 || strcmp(command, commands[HALT]) == 0)
 	{
-		printf("%s\n", line);
-		read = getLine(&line, &len, stdin);
-	}
-	if(strcmp(line, commands[HALT]) != 0)
+		printf("%s\n", command);
+		flag = scanf("%s",command);	}
+	if(strcmp(command, commands[HALT]) != 0)
 	{
 		print_error(MISSING_HALT);
-	}*/
+	}
 	return 0;
 }
 
