@@ -31,12 +31,13 @@ int enter_command(command* command)
 {
 	int flag = EOF;
 	char str[30];
-
+	char *token;
 	printf("Enter command: \n");
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
-		command->command = strtok(str, " ");
+		token = strtok(str, " ");
+		strcpy(command->command, token);
 		strcpy(command->args, str + strlen(command->command) - 1);
 		printf("command: %s\n", command->command);
 		printf("args: %s\n", command->args);
