@@ -31,7 +31,7 @@ int enter_command(char** command)
 {
 	printf("Enter command: \n");
 
-	return scanf("%s", *command);
+	return fgets(*command, 30, stdin);
 }
 
 void init_complexs()
