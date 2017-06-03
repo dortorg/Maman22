@@ -14,20 +14,22 @@
 
 int main()
 {
-	char command[30];
+	command comm;
+
 	menu();
 	init_complexs();
 
-	while(enter_command(command) != EOF)
+	while(enter_command(&comm) != EOF)
 	{
-		if(strcmp(command, commands[HALT]) == 0)
+		if(strcmp(comm.command, commands[HALT]) == 0)
 		{
 			printf("Bye bye!!\n");
 			exit(1);
 		}
-		printf("%s\n", command);
+		printf("command: %s\n", comm.command);
+		printf("args: %s\n", comm.args);
 	}
-	if(strcmp(command, commands[HALT]) != 0)
+	if(strcmp(comm.command, commands[HALT]) != 0)
 	{
 		print_error(MISSING_HALT);
 	}

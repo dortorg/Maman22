@@ -41,6 +41,12 @@ enum error_id
 	WORNG_PARAMETER_2_REAL, MISSING_COMMA, MULTIPLE_COMMAS, EXCESSIVE_TEXT, MISSING_HALT
 };
 
+typedef struct command
+{
+	char command[10];
+	char args[20];
+}command;
+
 static struct {
    char *name;
    complex *var;
@@ -64,7 +70,7 @@ enum commands_id
 
 void menu();
 
-int enter_command(char* command);
+int enter_command(command* command);
 
 void init_complexs();
 

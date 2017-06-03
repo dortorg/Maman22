@@ -27,13 +27,23 @@ void menu()
 
 }
 
-int enter_command(char* command)
+int enter_command(command* command)
 {
 	int flag = 0;
+	char str[30];
 	printf("Enter command: \n");
-	flag = scanf("%s", command);
-	command = strtok(command, "\n\t");
-	return 	flag;//puts(command);
+	flag = scanf("%s", str);
+	strcpy(command->command ,strtok(str, "\n\t"));
+	if(strlen(str) == strlen(command->command))
+	{
+		strcpy(command->args, "\0");
+	}
+	else
+	{
+		strcpy(command->args, str + strlen(command->command));
+
+	}
+	return 	flag;
 }
 
 void init_complexs()
