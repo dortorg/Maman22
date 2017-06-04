@@ -80,7 +80,10 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
+	printf("check_none_args %s\n", args)
+
 	remove_spaces(args);
+	printf("check_none_args %s\n", args)
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
