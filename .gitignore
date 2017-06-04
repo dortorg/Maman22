@@ -1,5 +1,6 @@
 utils.o
 complex.o
+complex
 main.o
 .settings/
 .cproject

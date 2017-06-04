@@ -5,11 +5,8 @@ CC = gcc
 CFLAGES = -Wall -ansi -pedantic
 OBJECTS = complex.o main.o utils.o
 
-main: main.o complex.o
-	gcc -ansi -Wall -pedantic -lm -o complex main.o complex.o
-
 complex: $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -O complex
+	$(CC) $(CFLAGS) $(OBJECTS) -o complex -lm
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
