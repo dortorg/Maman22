@@ -83,8 +83,6 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
-	printf("check_none_args %s\n", args);
-
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
@@ -105,13 +103,13 @@ int check_none_args(char* args)
 
 int check_A2F(char* af)
 {
-	if(!(strcmp(af, "A") >= 0 && strcmp(af, "F") <= 0))
+	if(af[0] >= 'A' && af[0] <= 'F')
 	{
-		return FALSE;
+		return TRUE;
 	}
 	else
 	{
-		return TRUE;
+		return FALSE;
 	}
 }
 
