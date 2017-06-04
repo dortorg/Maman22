@@ -93,7 +93,7 @@ int check_none_args(char* args)
 		print_error(EXCESSIVE_TEXT);
 		return FALSE;
 	}
-	if(check_A2F(args))
+	if(check_A2F(args) == FALSE)
 	{
 		print_error(INVALID_COMPLEX);
 		return FALSE;
