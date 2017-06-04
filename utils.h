@@ -47,12 +47,13 @@ static char *errorMsgs[] = {
 	"*ERROR: multiple consecutive commas\n",
 	"*ERROR: excessive text\n",
 	"*ERROR: not end with halt\n",
+	"*ERROR: no args enter\n",
 };
 
 enum error_id
 {
 	NOT_EXIST, INVALID_COMPLEX, INVALID_COMMAND, WORNG_PARAMETER_1, WORNG_PARAMETER_2_COMPLEX,
-	WORNG_PARAMETER_2_REAL, MISSING_COMMA, MULTIPLE_COMMAS, EXCESSIVE_TEXT, MISSING_HALT
+	WORNG_PARAMETER_2_REAL, MISSING_COMMA, MULTIPLE_COMMAS, EXCESSIVE_TEXT, MISSING_HALT, NO_ARGS
 };
 
 typedef struct command

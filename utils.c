@@ -81,7 +81,11 @@ void handle_command(command command)
 int check_none_args(char* args)
 {
 	remove_spaces(args);
-
+	if(strlen(args) == 0)
+	{
+		print_error(NO_ARGS);
+		return FALSE;
+	}
 	if(strlen(args) > 1)
 	{
 		print_error(EXCESSIVE_TEXT);
