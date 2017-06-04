@@ -60,6 +60,7 @@ int enter_command(command* command)
 void handle_command(command command)
 {
 	int i;
+	printf("handle_command   %s\n",command.args);
 
 	halt(command.command);
     /*through over all command list*/
