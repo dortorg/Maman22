@@ -118,6 +118,7 @@ void execute_none(char* args,  void (*func)())
 	complex* comp;
 	if(check_none_args(args) == TRUE)
 	{
+		printf("execute_none %s\n", args);
 		comp = string2complex(args);
 		if(comp != NULL)
 		{
@@ -129,6 +130,7 @@ void execute_none(char* args,  void (*func)())
 		}
 	}
 }
+
 complex* string2complex(char* af)
 {
 	int i;
