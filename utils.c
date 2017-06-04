@@ -118,7 +118,6 @@ void execute_none(char* args,  void (*func)())
 	complex* comp;
 	if(check_none_args(args) == TRUE)
 	{
-		printf("execute_none %s\n", args);
 		comp = string2complex(args);
 		if(comp != NULL)
 		{
@@ -147,12 +146,21 @@ complex* string2complex(char* af)
 void execute_var(char* args,  void (*func)())
 {
 	char compA[2], compB[2];
+	complex* complexA;
+	complex* complexB;
 	int i;
 	if(check_var_args(args,compA, compB) == TRUE)
 	{
-		printf("execute_var %s , %s\n",compA, compB);
-
-
+		complexA = string2complex(compA);
+		complexB = string2complex(compB);
+		if(complexA != NULL && complexB != NULL)
+		{
+			func(complexA, complexB);
+		}
+		else
+		{
+			print_error(INVALID_COMPLEX);
+		}
 	}
 }
 
@@ -172,8 +180,6 @@ int check_var_args(char* args, char* compA, char* compB)
 
 			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
 			{
-				printf("check_var_args %s    %s , %s\n",args,compA, compB);
-
 				return TRUE;
 			}
 		}
