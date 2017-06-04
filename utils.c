@@ -166,7 +166,10 @@ int check_var_args(char* args, char* compA, char* compB)
 		if(flag == 2)
 		{
 			strncpy(compA, &a, 1);
+			compA[1] = '\0';
 			strncpy(compB, &b, 1);
+			compB[1] = '\0';
+
 			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
 			{
 				printf("check_var_args %s    %s , %s\n",args,compA, compB);
