@@ -65,7 +65,6 @@ void handle_command(command command)
     /*through over all command list*/
     for(i=0; cmd[i].func != NULL; i++)
     {
-    	printf("dor   %s\n",command.command);
         if(strcmp(command.command, cmd[i].name) == 0)
         {
         	execute(cmd[i], command);
@@ -81,7 +80,22 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
+	remove_spaces(args);
 
+	if(strlen(args) > 1)
+	{
+		print_error(EXCESSIVE_TEXT);
+		return FALSE;
+	}
+	if(!(strcmp(args, "A") >= 0 && strcmp(args, "F") <= 0))
+	{
+		print_error(INVALID_COMPLEX);
+		return FALSE;
+	}
+	else
+	{
+		return TRUE;
+	}
 }
 
 void execute_none(char* args,  void (*func)())
@@ -98,6 +112,19 @@ void execute_none(char* args,  void (*func)())
 			}
 		}
 	}
+}
+
+void remove_spaces(char* source)
+{
+  char* i = source;
+  char* j = source;
+  while(*j != 0)
+  {
+    *i = *j++;
+    if(*i != ' ')
+      i++;
+  }
+  *i = 0;
 }
 
 void execute(struct cmd cmd, command com)

@@ -57,8 +57,8 @@ enum error_id
 
 typedef struct command
 {
-	char command[10];
-	char args[20];
+	char command[30];
+	char args[30];
 }command;
 
 static struct {
@@ -74,7 +74,7 @@ static struct {
    {"0", NULL}
 };
 
-typedef enum Bool{FALSE, TRUE};
+enum bool{FALSE, TRUE};
 
 enum commands_id
 {
@@ -99,6 +99,8 @@ void execute_none(char* args,  void (*func)());
 void execute(struct cmd cmd, command com);
 
 int check_none_args(char* args);
+
+void remove_spaces(char* source);
 
 
 #endif /* UTILS_H_ */
