@@ -159,11 +159,14 @@ void execute_var(char* args,  void (*func)())
 int check_var_args(char* args, char* compA, char* compB)
 {
 	int flag;
+	char a,b;
 	if(strlen(args) == 3)
 	{
-		flag = sscanf(args, "%c,%c", compA, compB);
+		flag = sscanf(args, "%c,%c", &a, &b);
 		if(flag == 2)
 		{
+			strncpy(compA, &a, 1);
+			strncpy(compB, &b, 1);
 			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
 			{
 				return TRUE;
