@@ -58,8 +58,8 @@ enum error_id
 
 typedef struct command
 {
-	char command[30];
-	char args[30];
+	char command[100];
+	char args[100];
 }command;
 
 static struct {

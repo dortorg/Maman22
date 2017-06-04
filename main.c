@@ -21,8 +21,8 @@ int main()
 
 	while(enter_command(&comm) != EOF)
 	{
-    	printf("main   %s\n",comm.command);
-    	printf("main   %s\n",comm.args);
+/*    	printf("main   %s\n",comm.command);
+    	printf("main   %s\n",comm.args);*/
 
 		handle_command(comm);
 	}

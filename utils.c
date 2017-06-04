@@ -8,7 +8,7 @@
 #include "utils.h"
 #include <string.h>
 #include <memory.h>
-
+#include <stdio.h>
 
 
 void menu()
@@ -18,7 +18,7 @@ void menu()
 	printf("read_comp           [complex number],[parameter],[parameter]\n");
 	printf("print_comp          [complex number]\n");
 	printf("add_comp            [complex number],[complex number]\n");
-	printf("sub_comp            [complex number]\n");
+	printf("sub_comp            [complex number],[complex number]\n");
 	printf("mult_comp_real      [complex number],[scalar]\n");
 	printf("mult_comp_img       [complex number],[scalar]\n");
 	printf("mult_comp_comp      [complex number],[complex number]\n");
@@ -30,19 +30,19 @@ void menu()
 int enter_command(command* command)
 {
 	int flag = EOF;
-	char str[30];
+	char str[100];
 	char *token;
 	printf("Enter command: \n");
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
 		token = strtok(str, " \n");
-    	printf("enter_command   %s\n",token);
+/*    	printf("enter_command   %s\n",token);*/
 
 		strcpy(command->command, token);
 
 		token = strtok(NULL, "\n");
-    	printf("enter_command   %s\n",token);
+/*    	printf("enter_command   %s\n",token);*/
 
 		if(token != NULL)
 		{
@@ -60,7 +60,7 @@ int enter_command(command* command)
 void handle_command(command command)
 {
 	int i;
-	printf("handle_command   %s\n",command.args);
+/*	printf("handle_command   %s\n",command.args);*/
 
 	halt(command.command);
     /*through over all command list*/
@@ -81,10 +81,10 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
-	printf("check_none_args %s\n", args);
+/*	printf("check_none_args %s\n", args);*/
 
 	remove_spaces(args);
-	printf("check_none_args %s\n", args);
+/*	printf("check_none_args %s\n", args);*/
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
@@ -109,7 +109,7 @@ int check_none_args(char* args)
 void execute_none(char* args,  void (*func)())
 {
 	int i;
-	printf("execute_none %s\n", args);
+/*	printf("execute_none %s\n", args);*/
 	if(check_none_args(args) == TRUE)
 	{
 		for(i = 0; storage[i].var != NULL; ++i)
@@ -141,7 +141,7 @@ void execute(struct cmd cmd, command com)
 	switch(cmd.funcParam)
 	{
 	case NONE:
-		printf("execute %s\n", com.args);
+/*		printf("execute %s\n", com.args);*/
 
 		execute_none(com.args, cmd.func);
 		break;
