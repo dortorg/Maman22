@@ -152,14 +152,7 @@ void execute_var(char* args,  void (*func)())
 	{
 		printf("execute_var %s , %s\n",compA, compB);
 
-		for(i = 0; storage[i].var != NULL; ++i)
-		{
-			if(strcmp(storage[i].name, args) == 0)
-			{
-				func(storage[i].var);
-				break;
-			}
-		}
+
 	}
 }
 
@@ -206,7 +199,7 @@ void execute(struct cmd cmd, command com)
 		execute_none(com.args, cmd.func);
 		break;
 	case VAR:
-		execute_none(com.args, cmd.func);
+		execute_var(com.args, cmd.func);
 
 		break;
 	case ARGS:
