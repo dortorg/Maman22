@@ -83,6 +83,8 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
+	printf("check_none_args %s\n", args);
+
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
@@ -143,6 +145,7 @@ complex* string2complex(char* af)
 	}
 	return NULL;
 }
+
 void execute_var(char* args,  void (*func)())
 {
 	char compA[2], compB[2];
@@ -162,7 +165,6 @@ void execute_var(char* args,  void (*func)())
 	}
 }
 
-
 int check_var_args(char* args, char* compA, char* compB)
 {
 	int flag;
@@ -180,7 +182,6 @@ int check_var_args(char* args, char* compA, char* compB)
 	}
 	return FALSE;
 }
-
 
 void remove_spaces(char* source)
 {
