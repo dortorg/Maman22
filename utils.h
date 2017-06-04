@@ -13,6 +13,8 @@
 
 
 #define SIZE 6
+#define LINE "################################################\n"
+
 
 complex a,b,c,d,e,f;
 

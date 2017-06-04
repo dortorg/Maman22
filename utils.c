@@ -32,6 +32,8 @@ int enter_command(command* command)
 	int flag = EOF;
 	char str[100];
 	char *token;
+
+	printf(LINE);
 	printf("Enter command: \n");
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
