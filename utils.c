@@ -8,7 +8,7 @@
 #include "utils.h"
 #include <string.h>
 #include <memory.h>
-#include <stdio.h>
+#include <stdlib.h>
 
 
 void menu()
@@ -83,10 +83,6 @@ void handle_command(command command)
 
 int check_none_args(char* args)
 {
-/*	printf("check_none_args %s\n", args);*/
-
-	remove_spaces(args);
-/*	printf("check_none_args %s\n", args);*/
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
@@ -97,9 +93,18 @@ int check_none_args(char* args)
 		print_error(EXCESSIVE_TEXT);
 		return FALSE;
 	}
-	if(!(strcmp(args, "A") >= 0 && strcmp(args, "F") <= 0))
+	if(check_A2F(args))
 	{
 		print_error(INVALID_COMPLEX);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+int check_A2F(char* af)
+{
+	if(!(strcmp(af, "A") >= 0 && strcmp(af, "F") <= 0))
+	{
 		return FALSE;
 	}
 	else
@@ -110,10 +115,40 @@ int check_none_args(char* args)
 
 void execute_none(char* args,  void (*func)())
 {
-	int i;
-/*	printf("execute_none %s\n", args);*/
+	complex* comp;
 	if(check_none_args(args) == TRUE)
 	{
+		comp = string2complex(args);
+		if(comp != NULL)
+		{
+			func(comp);
+		}
+		else
+		{
+			print_error(INVALID_COMPLEX);
+		}
+	}
+}
+complex* string2complex(char* af)
+{
+	int i;
+	for(i = 0; storage[i].var != NULL; ++i)
+	{
+		if(strcmp(storage[i].name, af) == 0)
+		{
+			return storage[i].var;
+		}
+	}
+	return NULL;
+}
+void execute_var(char* args,  void (*func)())
+{
+	char compA[2], compB[2];
+	int i;
+	if(check_var_args(args,compA, compB) == TRUE)
+	{
+		printf("execute_var %s , %s\n",compA, compB);
+
 		for(i = 0; storage[i].var != NULL; ++i)
 		{
 			if(strcmp(storage[i].name, args) == 0)
@@ -124,6 +159,26 @@ void execute_none(char* args,  void (*func)())
 		}
 	}
 }
+
+
+int check_var_args(char* args, char* compA, char* compB)
+{
+	int flag;
+	if(strlen(args) == 3)
+	{
+		flag = sscanf(args, "%c,%c", compA, compB);
+		if(flag == 2)
+		{
+			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			{
+				return TRUE;
+			}
+		}
+		printf("check_var_args %s , %s\n",compA, compB);
+	}
+	return FALSE;
+}
+
 
 void remove_spaces(char* source)
 {
@@ -140,6 +195,8 @@ void remove_spaces(char* source)
 
 void execute(struct cmd cmd, command com)
 {
+	remove_spaces(com.args);
+
 	switch(cmd.funcParam)
 	{
 	case NONE:
@@ -148,6 +205,8 @@ void execute(struct cmd cmd, command com)
 		execute_none(com.args, cmd.func);
 		break;
 	case VAR:
+		execute_none(com.args, cmd.func);
+
 		break;
 	case ARGS:
 		break;
@@ -164,7 +223,6 @@ void halt(char* command)
 		exit(1);
 	}
 }
-
 
 void init_complexs()
 {

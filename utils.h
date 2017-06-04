@@ -99,11 +99,20 @@ void halt(char* command);
 
 void execute_none(char* args,  void (*func)());
 
+void execute_var(char* args,  void (*func)());
+
 void execute(struct cmd cmd, command com);
 
 int check_none_args(char* args);
 
+int check_var_args(char* args, char* compA, char* compB);
+
+int check_A2F(char* af);
+
 void remove_spaces(char* source);
+
+complex* string2complex(char* af);
+
 
 
 #endif /* UTILS_H_ */

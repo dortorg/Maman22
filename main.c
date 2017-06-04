@@ -14,15 +14,15 @@
 
 int main()
 {
-	command comm;
+    command comm;
 
 	menu();
 	init_complexs();
 
 	while(enter_command(&comm) != EOF)
 	{
-/*    	printf("main   %s\n",comm.command);
-    	printf("main   %s\n",comm.args);*/
+    	printf("main   %s\n",comm.command);
+    	printf("main   %s\n",comm.args);
 
 		handle_command(comm);
 	}
@@ -30,6 +30,7 @@ int main()
 	{
 		print_error(MISSING_HALT);
 	}
+
 	return 0;
 }
 
