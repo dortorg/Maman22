@@ -108,6 +108,7 @@ int check_none_args(char* args)
 void execute_none(char* args,  void (*func)())
 {
 	int i;
+	printf("execute_none %s\n", args);
 	if(check_none_args(args) == TRUE)
 	{
 		for(i = 0; storage[i].var != NULL; ++i)
@@ -139,6 +140,8 @@ void execute(struct cmd cmd, command com)
 	switch(cmd.funcParam)
 	{
 	case NONE:
+		printf("execute %s\n", com.args);
+
 		execute_none(com.args, cmd.func);
 		break;
 	case VAR:
