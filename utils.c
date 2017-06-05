@@ -19,8 +19,8 @@ void menu()
 	printf("print_comp          [complex number]\n");
 	printf("add_comp            [complex number],[complex number]\n");
 	printf("sub_comp            [complex number],[complex number]\n");
-	printf("mult_comp_real      [complex number],[scalar]\n");
-	printf("mult_comp_img       [complex number],[scalar]\n");
+	printf("mult_comp_real      [complex number],[parameter]\n");
+	printf("mult_comp_img       [complex number],[parameter]\n");
 	printf("mult_comp_comp      [complex number],[complex number]\n");
 	printf("abs_comp            [complex number]\n");
 	printf("halt                [none]\n");
@@ -148,7 +148,7 @@ void execute_var(char* args,  void (*func)())
 	char compA[2], compB[2];
 	complex* complexA;
 	complex* complexB;
-	int i;
+
 	if(check_var_args(args,compA, compB) == TRUE)
 	{
 		complexA = string2complex(compA);
@@ -182,8 +182,67 @@ int check_var_args(char* args, char* compA, char* compB)
 			{
 				return TRUE;
 			}
+			else
+			{
+				if(check_A2F(compA) == TRUE)
+				{
+					print_error(WORNG_PARAMETER_2_COMPLEX);
+					return FALSE;
+				}
+				else
+				{
+					print_error(WORNG_PARAMETER_1);
+					return FALSE;
+				}
+			}
 		}
 	}
+	if(strlen(args) == 2)
+	{
+		flag = sscanf(args, "%c%c", &a, &b);
+		if(flag == 2)
+		{
+			strncpy(compA, &a, 1);
+			compA[1] = '\0';
+			strncpy(compB, &b, 1);
+			compB[1] = '\0';
+
+			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			{
+				print_error(MISSING_COMMA);
+				return FALSE;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return FALSE;
+			}
+		}
+	}
+	if(strlen(args) == 4)
+	{
+		flag = sscanf(args, "%c,,%c", &a, &b);
+		if(flag == 2)
+		{
+			strncpy(compA, &a, 1);
+			compA[1] = '\0';
+			strncpy(compB, &b, 1);
+			compB[1] = '\0';
+
+			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			{
+				print_error(MULTIPLE_COMMAS);
+				return FALSE;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return FALSE;
+			}
+		}
+	}
+
+	print_error(INVALID_ARGS);
 	return FALSE;
 }
 
