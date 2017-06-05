@@ -36,7 +36,7 @@ int enter_command(command* command)
 	if(fgets(str, 100, stdin) != NULL)
 	{
 
-			printf("size = %d %s\n",str);
+			printf("%s\n",str);
 			token = strtok(str, " \n");
 			strcpy(command->command, token);
 			token = strtok(NULL, "\n");
