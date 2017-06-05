@@ -243,19 +243,34 @@ bool check_var_args(char* args, char* compA, char* compB)
 			}
 		}
 	}
-	if(strlen(args) == 4)
+	if(strlen(args) >= 4)
 	{
-		flag = sscanf(args, "%c,,%c", &a, &b);
-		if(flag == 2)
+		flag = sscanf(args, "%c", &a);
+		if(flag == 1)
 		{
 			strncpy(compA, &a, 1);
 			compA[1] = '\0';
-			strncpy(compB, &b, 1);
-			compB[1] = '\0';
 
-			if(check_A2F(compA) == true && check_A2F(compB) == true)
+			if(check_A2F(compA) == true)
 			{
-				print_error(MULTIPLE_COMMAS);
+				int i = 1;
+				while(args[i] == ',' && args[i] != '\0'){i++;}
+				if(args[i] != '\0')
+				{
+					flag = sscanf(args + i, "%c", &b);
+					if(flag == 1)
+					{
+						strncpy(compB, &b, 1);
+						compB[1] = '\0';
+						if(check_A2F(compB) == true && args[i + 1] == '\0')
+						{
+							print_error(MULTIPLE_COMMAS);
+							return false;
+						}
+					}
+				}
+
+				print_error(INVALID_ARGS);
 				return false;
 			}
 			else
