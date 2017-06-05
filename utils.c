@@ -416,7 +416,7 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		else
 		{
 
-			print_error(INVALID_ARGS);
+			print_error(status);
 			return false;
 		}
 	}
