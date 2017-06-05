@@ -18,13 +18,16 @@ int main()
 
 	menu();
 	init_complexs();
-
+	printf(LINE);
+	printf("Enter command: \n");
 	while(enter_command(&comm) != EOF)
 	{
-    /*	printf("main   %s\n",comm.command);
-    	printf("main   %s\n",comm.args);*/
-
-		handle_command(comm);
+		if(strcmp(comm.command, "\n") != 0)
+		{
+			handle_command(comm);
+			printf(LINE);
+			printf("Enter command: \n");
+		}
 	}
 	if(strcmp(comm.command, commands[HALT]) != 0)
 	{
