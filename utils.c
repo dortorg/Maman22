@@ -339,7 +339,7 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 
 	if(flag == 2)
 	{
-		flag = sscanf(args, "c,%lf,%lf", &temp, real, img);
+		flag = sscanf(args, "%c,%lf,%lf", &temp, real, img);
 		if(flag == 3 && status == SUCCESS)
 		{
 
