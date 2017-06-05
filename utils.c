@@ -10,6 +10,17 @@
 #include <memory.h>
 #include <stdlib.h>
 
+/********** API **********/
+
+void init_complexes()
+{
+	int i;
+	for(i = 0; i < SIZE; ++i)
+	{
+		storage[i].var->img = 0;
+		storage[i].var->real = 0;
+	}
+}
 
 void menu()
 {
@@ -81,35 +92,27 @@ void handle_command(command command)
 
 }
 
-bool check_none_args(char* args)
-{
-	if(strlen(args) == 0)
-	{
-		print_error(NO_ARGS);
-		return false;
-	}
-	if(strlen(args) > 1)
-	{
-		print_error(EXCESSIVE_TEXT);
-		return false;
-	}
-	if(check_A2F(args) == false)
-	{
-		print_error(INVALID_COMPLEX);
-		return false;
-	}
-	return true;
-}
 
-bool check_A2F(char* af)
+/*************** HANDLER FUNCTIONS *******************/
+
+void execute(struct cmd cmd, command com)
 {
-	if(af[0] >= 'A' && af[0] <= 'F')
+	remove_spaces(com.args);
+
+	switch(cmd.funcParam)
 	{
-		return true;
-	}
-	else
-	{
-		return false;
+	case NONE:
+		execute_none(com.args, cmd.func);
+		break;
+	case VAR:
+		execute_var(com.args, cmd.func);
+		break;
+	case ARGS:
+		execute_args(com.args, cmd.func);
+		break;
+	case SCALAR:
+		execute_scalar(com.args, cmd.func);
+		break;
 	}
 }
 
@@ -128,19 +131,6 @@ void execute_none(char* args,  void (*func)())
 			print_error(INVALID_COMPLEX);
 		}
 	}
-}
-
-complex* string2complex(char* af)
-{
-	int i;
-	for(i = 0; storage[i].var != NULL; ++i)
-	{
-		if(strcmp(storage[i].name, af) == 0)
-		{
-			return storage[i].var;
-		}
-	}
-	return NULL;
 }
 
 void execute_var(char* args,  void (*func)())
@@ -164,11 +154,38 @@ void execute_var(char* args,  void (*func)())
 	}
 }
 
-bool isEmptyLine(const char *s) {
-	printf("%d\n",strlen(s));
-  static const char *emptyline_detector = " \t\n";
+void execute_args(char* args,  void (*func)())
+{
 
-  return strspn(s, emptyline_detector) == strlen(s);
+}
+
+void execute_scalar(char* args,  void (*func)())
+{
+
+}
+
+
+/*********************** MAIN CHECKING & PARSE FUNCTIONS ****************************/
+
+
+bool check_none_args(char* args)
+{
+	if(strlen(args) == 0)
+	{
+		print_error(NO_ARGS);
+		return false;
+	}
+	if(strlen(args) > 1)
+	{
+		print_error(EXCESSIVE_TEXT);
+		return false;
+	}
+	if(check_A2F(args) == false)
+	{
+		print_error(INVALID_COMPLEX);
+		return false;
+	}
+	return true;
 }
 
 bool check_var_args(char* args, char* compA, char* compB)
@@ -253,6 +270,51 @@ bool check_var_args(char* args, char* compA, char* compB)
 	return false;
 }
 
+bool check_args_args(char* args, char* compA, double* real, double* img)
+{
+
+}
+
+bool check_scalar_args(char* args, char* compA, double* parameter)
+{
+
+}
+
+
+
+/********************************** HELP FUNCTIONS **********************************/
+
+bool check_A2F(char* af)
+{
+	if(af[0] >= 'A' && af[0] <= 'F')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+complex* string2complex(char* af)
+{
+	int i;
+	for(i = 0; storage[i].var != NULL; ++i)
+	{
+		if(strcmp(storage[i].name, af) == 0)
+		{
+			return storage[i].var;
+		}
+	}
+	return NULL;
+}
+
+bool isEmptyLine(const char *s) {
+  static const char *emptyline_detector = " \t\n";
+
+  return strspn(s, emptyline_detector) == strlen(s);
+}
+
 void remove_spaces(char* source)
 {
   char* i = source;
@@ -266,44 +328,12 @@ void remove_spaces(char* source)
   *i = 0;
 }
 
-void execute(struct cmd cmd, command com)
-{
-	remove_spaces(com.args);
-
-	switch(cmd.funcParam)
-	{
-	case NONE:
-/*		printf("execute %s\n", com.args);*/
-
-		execute_none(com.args, cmd.func);
-		break;
-	case VAR:
-		execute_var(com.args, cmd.func);
-
-		break;
-	case ARGS:
-		break;
-	case SCALAR:
-		break;
-	}
-}
-
 void halt(char* command)
 {
-	if(strcmp(command, commands[HALT]) == 0)
+	if(strcmp(command, HALT) == 0)
 	{
 		printf("Bye bye!!\n");
 		exit(1);
-	}
-}
-
-void init_complexs()
-{
-	int i;
-	for(i = 0; i < SIZE; ++i)
-	{
-		storage[i].var->img = 0;
-		storage[i].var->real = 0;
 	}
 }
 

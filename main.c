@@ -17,7 +17,7 @@ int main()
     command comm;
 
 	menu();
-	init_complexs();
+	init_complexes();
 	printf(LINE);
 	printf("Enter command: \n");
 	while(enter_command(&comm) != EOF)
@@ -29,11 +29,6 @@ int main()
 			printf("Enter command: \n");
 		}
 	}
-	if(strcmp(comm.command, commands[HALT]) != 0)
-	{
-		print_error(MISSING_HALT);
-	}
-
 	return 0;
 }
 

@@ -6,18 +6,16 @@
 #include <math.h>
 
 /*all functions in header file*/
-
 void read_comp(complex *cp, double real, double img)
 {
     (*cp).real = real;
     (*cp).img = img;
 }
 
-
 /* add complex number name to*/
 void print_comp(complex *cp)
 {
-    printf("SYSTEM: Print complex Number : ");
+    printf("Print complex Number : ");
     printf("%.2f + %.2fi\n", (*cp).real, (*cp).img);
 }
 
