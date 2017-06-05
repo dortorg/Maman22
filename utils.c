@@ -334,7 +334,7 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 
 	flag = sscanf((args + i), ",%lf", real);
-	printf("-1\n");
+	printf("%lf\n",real);
 
 	if(flag == 1)
 	{
