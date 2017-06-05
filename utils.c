@@ -350,15 +350,22 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 			}
 			if(flag != 2)
 			{
+				printf("1\n");
 				char* token = strtok(args + 1, ",");
 				if(token != NULL)
 				{
+					printf("2\n");
+
 					flag = sscanf(token, "%lf", img);
 					if(flag == 1)
 					{
+						printf("3\n");
+
 						token = strtok(NULL, ",");
 						if(token != NULL)
 						{
+							printf("4\n");
+
 							flag = sscanf(token, "%lf", img);
 							if(flag == 1)
 							{
