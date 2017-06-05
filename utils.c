@@ -37,6 +37,7 @@ int enter_command(command* command)
 	{
 		if(isEmptyLine(str) != true)
 		{
+			printf("%s\n", str);
 			token = strtok(str, " \n");
 			strncpy(command->command, token, 50);
 			token = strtok(NULL, "\n");
