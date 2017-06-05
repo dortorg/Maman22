@@ -339,12 +339,13 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		flag = sscanf((args + i), ",%lf,%lf", real, img);
 		if(flag == 2 && status == SUCCESS)
 		{
+			printf("%d  ddddd\n",status);
+
 			return true;
 		}
 	}
 	else
 	{
-		printf("%d  ddddd\n",status);
 
 		if(status == SUCCESS)
 		{
