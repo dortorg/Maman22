@@ -35,29 +35,27 @@ int enter_command(command* command)
 
 	if(fgets(str, 100, stdin) != NULL)
 	{
-
-			printf("1\n");
+		if(isEmptyLine(str) != true)
+		{
 			token = strtok(str, " \n");
-			printf("2\n");
-
 			strncpy(command->command, token, 50);
-			printf("3\n");
-
 			token = strtok(NULL, "\n");
-			printf("4\n");
 
 			if(token != NULL)
 			{
 				strncpy(command->args, token, 50);
-				printf("5\n");
-
 			}
 			else
 			{
 				strncpy(command->args, "\0", 50);
 			}
-			flag = 1;
-
+		}
+		else
+		{
+			strncpy(command->command, "\0", 2);
+			strncpy(command->args, "\0", 2);
+		}
+		flag = 1;
 	}
 	return 	flag;
 }
@@ -65,8 +63,6 @@ int enter_command(command* command)
 void handle_command(command command)
 {
 	int i;
-/*	printf("handle_command   %s\n",command.args);*/
-
 	halt(command.command);
     /*through over all command list*/
     for(i=0; cmd[i].func != NULL; i++)
@@ -84,42 +80,42 @@ void handle_command(command command)
 
 }
 
-int check_none_args(char* args)
+bool check_none_args(char* args)
 {
 	if(strlen(args) == 0)
 	{
 		print_error(NO_ARGS);
-		return FALSE;
+		return false;
 	}
 	if(strlen(args) > 1)
 	{
 		print_error(EXCESSIVE_TEXT);
-		return FALSE;
+		return false;
 	}
-	if(check_A2F(args) == FALSE)
+	if(check_A2F(args) == false)
 	{
 		print_error(INVALID_COMPLEX);
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 
-int check_A2F(char* af)
+bool check_A2F(char* af)
 {
 	if(af[0] >= 'A' && af[0] <= 'F')
 	{
-		return TRUE;
+		return true;
 	}
 	else
 	{
-		return FALSE;
+		return false;
 	}
 }
 
 void execute_none(char* args,  void (*func)())
 {
 	complex* comp;
-	if(check_none_args(args) == TRUE)
+	if(check_none_args(args) == true)
 	{
 		comp = string2complex(args);
 		if(comp != NULL)
@@ -152,7 +148,7 @@ void execute_var(char* args,  void (*func)())
 	complex* complexA;
 	complex* complexB;
 
-	if(check_var_args(args,compA, compB) == TRUE)
+	if(check_var_args(args,compA, compB) == true)
 	{
 		complexA = string2complex(compA);
 		complexB = string2complex(compB);
@@ -167,7 +163,13 @@ void execute_var(char* args,  void (*func)())
 	}
 }
 
-int check_var_args(char* args, char* compA, char* compB)
+bool isEmptyLine(const char *s) {
+  static const char *emptyline_detector = " \t\n";
+
+  return strspn(s, emptyline_detector) == strlen(s);
+}
+
+bool check_var_args(char* args, char* compA, char* compB)
 {
 	int flag;
 	char a,b;
@@ -181,21 +183,21 @@ int check_var_args(char* args, char* compA, char* compB)
 			strncpy(compB, &b, 1);
 			compB[1] = '\0';
 
-			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			if(check_A2F(compA) == true && check_A2F(compB) == true)
 			{
-				return TRUE;
+				return true;
 			}
 			else
 			{
-				if(check_A2F(compA) == TRUE)
+				if(check_A2F(compA) == true)
 				{
 					print_error(WORNG_PARAMETER_2_COMPLEX);
-					return FALSE;
+					return false;
 				}
 				else
 				{
 					print_error(WORNG_PARAMETER_1);
-					return FALSE;
+					return false;
 				}
 			}
 		}
@@ -210,15 +212,15 @@ int check_var_args(char* args, char* compA, char* compB)
 			strncpy(compB, &b, 1);
 			compB[1] = '\0';
 
-			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			if(check_A2F(compA) == true && check_A2F(compB) == true)
 			{
 				print_error(MISSING_COMMA);
-				return FALSE;
+				return false;
 			}
 			else
 			{
 				print_error(INVALID_ARGS);
-				return FALSE;
+				return false;
 			}
 		}
 	}
@@ -232,21 +234,21 @@ int check_var_args(char* args, char* compA, char* compB)
 			strncpy(compB, &b, 1);
 			compB[1] = '\0';
 
-			if(check_A2F(compA) == TRUE && check_A2F(compB) == TRUE)
+			if(check_A2F(compA) == true && check_A2F(compB) == true)
 			{
 				print_error(MULTIPLE_COMMAS);
-				return FALSE;
+				return false;
 			}
 			else
 			{
 				print_error(INVALID_ARGS);
-				return FALSE;
+				return false;
 			}
 		}
 	}
 
 	print_error(INVALID_ARGS);
-	return FALSE;
+	return false;
 }
 
 void remove_spaces(char* source)

@@ -79,7 +79,7 @@ static struct {
    {"0", NULL}
 };
 
-enum bool{FALSE, TRUE};
+typedef enum { false = 0, true } bool;
 
 enum commands_id
 {
@@ -105,16 +105,16 @@ void execute_var(char* args,  void (*func)());
 
 void execute(struct cmd cmd, command com);
 
-int check_none_args(char* args);
+bool check_none_args(char* args);
 
-int check_var_args(char* args, char* compA, char* compB);
+bool check_var_args(char* args, char* compA, char* compB);
 
-int check_A2F(char* af);
+bool check_A2F(char* af);
 
 void remove_spaces(char* source);
 
 complex* string2complex(char* af);
 
-
+bool isEmptyLine(const char *s);
 
 #endif /* UTILS_H_ */
