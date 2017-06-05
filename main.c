@@ -22,7 +22,7 @@ int main()
 	printf("Enter command: \n");
 	while(enter_command(&comm) != EOF)
 	{
-		if(strcmp(comm.command, "\n") != 0)
+		if(comm.command[0] != "\n")
 		{
 			handle_command(comm);
 			printf(LINE);
