@@ -35,18 +35,25 @@ int enter_command(command* command)
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
-		printf("%s\n",str);
-		token = strtok(str, " \n");
-		strcpy(command->command, token);
-		token = strtok(NULL, "\n");
-
-		if(token != NULL)
+		if (str[0] != '\n')
 		{
-			strcpy(command->args, token);
+			printf("%s\n",str);
+			token = strtok(str, " \n");
+			strcpy(command->command, token);
+			token = strtok(NULL, "\n");
+
+			if(token != NULL)
+			{
+				strcpy(command->args, token);
+			}
+			else
+			{
+				strcpy(command->args, "\0");
+			}
 		}
 		else
 		{
-			strcpy(command->args, "\0");
+			strcpy(command->command, "\n");
 		}
 		flag = 1;
 	}
