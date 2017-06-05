@@ -33,7 +33,7 @@ int enter_command(command* command)
 	char str[100];
 	char *token;
 
-	if(fgets(str, sizeof(str), stdin) != NULL)
+	if(fgets(str, 100, stdin) != NULL)
 	{
 
 			printf("size = %d %s\n",str);
