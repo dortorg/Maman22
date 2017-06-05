@@ -156,7 +156,21 @@ void execute_var(char* args,  void (*func)())
 
 void execute_args(char* args,  void (*func)())
 {
-
+	complex* comp;
+	char compA[2];
+	double real, img;
+	if(check_args_args(args, compA, &real, &img) == true)
+	{
+		comp = string2complex(compA);
+		if(comp != NULL)
+		{
+			func(comp, real, img);
+		}
+		else
+		{
+			print_error(INVALID_COMPLEX);
+		}
+	}
 }
 
 void execute_scalar(char* args,  void (*func)())
