@@ -36,14 +36,21 @@ int enter_command(command* command)
 	if(fgets(str, 100, stdin) != NULL)
 	{
 
-			printf("%s\n",str);
+			printf("1\n");
 			token = strtok(str, " \n");
+			printf("2\n");
+
 			strcpy(command->command, token);
+			printf("3\n");
+
 			token = strtok(NULL, "\n");
+			printf("4\n");
 
 			if(token != NULL)
 			{
 				strcpy(command->args, token);
+				printf("5\n");
+
 			}
 			else
 			{
