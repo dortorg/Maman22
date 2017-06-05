@@ -287,12 +287,73 @@ bool check_var_args(char* args, char* compA, char* compB)
 
 bool check_args_args(char* args, char* compA, double* real, double* img)
 {
-
+	int status = SUCCESS;
+	int flag;
+	char temp;
+	int i = 0;
+	flag = sscanf(args, "%c", &temp);
+	if(flag == 1)
+	{
+		strncpy(compA, &temp, 1);
+		compA[1] = '\0';
+		if(check_A2F(compA) == false)
+		{
+			if(compA[0] >= 'G' && compA[0] <= 'Z')
+			{
+				status = INVALID_COMPLEX;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return false;
+			}
+		}
+		++i;
+	}
+	else
+	{
+		print_error(INVALID_ARGS);
+		return false;
+	}
+	flag = sscanf((args + i), ",%lf", real);
+	if(flag == 1)
+	{
+		flag = sscanf((args + i), ",%lf,%lf", real, img);
+		if(flag == 2 && status == SUCCESS)
+		{
+			return true;
+		}
+	}
+	else
+	{
+		if(status == SUCCESS)
+		{
+			flag = sscanf((args + i), ",%c,%lf", temp, img);
+			if(flag == 2 && check_A2F(temp) == true)
+			{
+				print_error(WORNG_PARAMETER_2_REAL);
+				return false;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return false;
+			}
+		}
+		else
+		{
+			print_error(INVALID_ARGS);
+			return false;
+		}
+	}
+	print_error(INVALID_ARGS);
+	return false;
 }
 
 bool check_scalar_args(char* args, char* compA, double* parameter)
 {
-
+	print_error(INVALID_ARGS);
+	return false;
 }
 
 
