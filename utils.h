@@ -160,7 +160,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img);
 bool check_scalar_args(char* args, char* compA, double* parameter);
 
 
-
 /*********** HELP FUNCTIONS ***********/
 
 /*
