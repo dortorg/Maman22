@@ -354,14 +354,10 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		flag = sscanf(args, "%c,%lf,%lf%s", &temp, real, img, str);
 		if(flag == 3 && status == SUCCESS)
 		{
-			if(strlen(str) == 0)
+			flag = sscanf(args, "%c,%lf,%lf", &temp, real, img);
+			if(flag == 3)
 			{
 				return true;
-			}
-			else
-			{
-				print_error(INVALID_ARGS);
-				return false;
 			}
 		}
 	}
@@ -434,15 +430,16 @@ bool check_scalar_args(char* args, char* compA, double* parameter)
 	flag = sscanf(args, "%c,%lf%s", &temp, parameter, str);
 	if(flag == 2)
 	{
-		if(strlen(str) == 0)
+		flag = sscanf(args, "%c,%lf", &temp, parameter);
+		if(flag == 2)
 		{
 			return true;
 		}
-		else
-		{
-			print_error(INVALID_COMPLEX);
-			return false;
-		}
+	}
+	else if(flag == 3)
+	{
+		print_error(INVALID_ARGS);
+		return false;
 	}
 
 	i = 1;
