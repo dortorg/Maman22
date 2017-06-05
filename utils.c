@@ -328,7 +328,8 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		{
 			if(compA[0] >= 'G' && compA[0] <= 'Z')
 			{
-				status = INVALID_COMPLEX;
+				print_error(INVALID_COMPLEX);
+				return false;
 			}
 			else
 			{

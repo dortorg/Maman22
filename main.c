@@ -29,6 +29,7 @@ int main()
 			printf("Enter command: \n");
 		}
 	}
+	halt(comm.command);
 	return 0;
 }
 
