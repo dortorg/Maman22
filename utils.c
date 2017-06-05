@@ -165,6 +165,7 @@ void execute_var(char* args,  void (*func)())
 }
 
 bool isEmptyLine(const char *s) {
+	printf("%d\n", strlen(s));
 	while(*s==' ' || *s=='\t') s++;
 	if(*s=='\n')
 	{
