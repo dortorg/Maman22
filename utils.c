@@ -334,13 +334,13 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		return false;
 	}
 
-	flag = sscanf((args), "%c,%lf", real,&temp);
+	flag = sscanf((args), "%c,%lf", &temp, real);
 	printf("%lf\n",real);
 
-	if(flag == 1)
+	if(flag == 2)
 	{
-		flag = sscanf((args + i), ",%lf,%lf", real, img);
-		if(flag == 2 && status == SUCCESS)
+		flag = sscanf(args, "c,%lf,%lf", &temp, real, img);
+		if(flag == 3 && status == SUCCESS)
 		{
 
 			return true;
