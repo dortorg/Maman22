@@ -350,11 +350,11 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 
 	if(flag == 2)
 	{
-		flag = sscanf(args, "%c,%lf,%lf", &temp, real, img);
+		char str[100];
+		flag = sscanf(args, "%c,%lf,%lf%s", &temp, real, img, str);
 		if(flag == 3 && status == SUCCESS)
 		{
-			char* toke = strtok(args,"\nABCDEF,+-123456789.");
-			if(toke == NULL)
+			if(strlen(str) == 0)
 			{
 				return true;
 			}
@@ -429,12 +429,12 @@ bool check_scalar_args(char* args, char* compA, double* parameter)
 			}
 		}
 	}
+	char str[100];
 
-	flag = sscanf(args, "%c,%lf", &temp, parameter);
+	flag = sscanf(args, "%c,%lf%s", &temp, parameter, str);
 	if(flag == 2)
 	{
-		char* toke = strtok(args,"\nABCDEF,+-123456789.");
-		if(toke == NULL)
+		if(strlen(str) == 0)
 		{
 			return true;
 		}
