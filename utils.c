@@ -40,7 +40,7 @@ int enter_command(command* command)
 			token = strtok(str, " \n");
 			printf("2\n");
 
-			strcpy(command->command, token);
+			strncpy(command->command, token, 50);
 			printf("3\n");
 
 			token = strtok(NULL, "\n");
@@ -48,13 +48,13 @@ int enter_command(command* command)
 
 			if(token != NULL)
 			{
-				strcpy(command->args, token);
+				strncpy(command->args, token, 50);
 				printf("5\n");
 
 			}
 			else
 			{
-				strcpy(command->args, "\0");
+				strncpy(command->args, "\0", 50);
 			}
 			flag = 1;
 
