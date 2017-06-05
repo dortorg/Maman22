@@ -440,7 +440,7 @@ bool check_scalar_args(char* args, char* compA, double* parameter)
 		}
 		else
 		{
-			print_error(INVALID_ARGS);
+			print_error(INVALID_COMPLEX);
 			return false;
 		}
 	}
