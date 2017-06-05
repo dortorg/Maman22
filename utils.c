@@ -37,7 +37,7 @@ int enter_command(command* command)
 	{
 		if(str[0] != '\0')
 		{
-			printf("size = %d %s\n",str, strlen(str));
+/*			printf("size = %d %s\n",str);*/
 			token = strtok(str, " \n");
 			strcpy(command->command, token);
 			token = strtok(NULL, "\n");
