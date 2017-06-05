@@ -175,7 +175,21 @@ void execute_args(char* args,  void (*func)())
 
 void execute_scalar(char* args,  void (*func)())
 {
-
+	complex* comp;
+	char compA[2];
+	double  img;
+	if(check_scalar_args(args, compA, &img) == true)
+	{
+		comp = string2complex(compA);
+		if(comp != NULL)
+		{
+			func(comp, img);
+		}
+		else
+		{
+			print_error(INVALID_COMPLEX);
+		}
+	}
 }
 
 
@@ -314,8 +328,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		{
 			if(compA[0] >= 'G' && compA[0] <= 'Z')
 			{
-				printf("%d  ddddd\n",status);
-
 				status = INVALID_COMPLEX;
 			}
 			else
@@ -335,21 +347,26 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 
 	flag = sscanf((args), "%c,%lf", &temp, real);
-	printf("%lf\n",*real);
 
 	if(flag == 2)
 	{
 		flag = sscanf(args, "%c,%lf,%lf", &temp, real, img);
 		if(flag == 3 && status == SUCCESS)
 		{
-
-			return true;
+			char* toke = strtok(args,"\nABCDEF,+-123456789.");
+			if(toke == NULL)
+			{
+				return true;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return false;
+			}
 		}
 	}
 	else
 	{
-		printf("0\n");
-
 		if(status == SUCCESS)
 		{
 
@@ -361,69 +378,24 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 			}
 			if(flag != 2)
 			{
-				printf("1\n");
-				char* token = strtok(args + 1, ",");
-				if(token != NULL)
+				i = 1;
+				while(args[i] == ',' && args[i] != '\0'){i++;}
+				if(args[i] != '\0' && i > 1)
 				{
-					printf("2\n");
-
-					flag = sscanf(token, "%lf", img);
+					flag = sscanf((args + i), "%lf", img);
 					if(flag == 1)
 					{
-						printf("3\n");
-
-						token = strtok(NULL, ",");
-						if(token != NULL)
-						{
-							printf("4\n");
-
-							flag = sscanf(token, "%lf", img);
-							if(flag == 1)
-							{
-								if(strlen(args) > 5)
-								{
-									print_error(MULTIPLE_COMMAS);
-									return false;
-								}
-								else
-								{
-									print_error(MISSING_COMMA);
-									return false;
-								}
-							}
-							else
-							{
-								print_error(INVALID_ARGS);
-								return false;
-							}
-						}
-						else
-						{
-							print_error(INVALID_ARGS);
-							return false;
-						}
-					}
-					else
-					{
-						print_error(INVALID_ARGS);
+						print_error(MULTIPLE_COMMAS);
 						return false;
 					}
 				}
-				else
-				{
-					print_error(INVALID_ARGS);
-					return false;
-				}
 			}
-
 
 			print_error(INVALID_ARGS);
 			return false;
-
 		}
 		else
 		{
-
 			print_error(status);
 			return false;
 		}
@@ -435,6 +407,64 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 
 bool check_scalar_args(char* args, char* compA, double* parameter)
 {
+	char temp;
+	int flag;
+	int i = 1;
+	flag = sscanf(args, "%c", &temp);
+	if(flag == 1)
+	{
+		strncpy(compA, &temp, 1);
+		compA[1] = '\0';
+		if(check_A2F(compA) == false)
+		{
+			if(compA[0] >= 'G' && compA[0] <= 'Z')
+			{
+				print_error(INVALID_COMPLEX);
+				return false;
+			}
+			else
+			{
+				print_error(INVALID_ARGS);
+				return false;
+			}
+		}
+	}
+
+	flag = sscanf(args, "%c,%lf", &temp, parameter);
+	if(flag == 2)
+	{
+		char* toke = strtok(args,"\nABCDEF,+-123456789.");
+		if(toke == NULL)
+		{
+			return true;
+		}
+		else
+		{
+			print_error(INVALID_ARGS);
+			return false;
+		}
+	}
+
+	i = 1;
+	while(args[i] == ',' && args[i] != '\0'){i++;}
+
+	if(i > 1 && args[i] != '0')
+	{
+
+		flag = sscanf(args + i, "%lf", parameter);
+		if(flag == 1)
+		{
+			print_error(MULTIPLE_COMMAS);
+			return false;
+		}
+	}
+	flag = sscanf(args, "%c,%c", &temp, &temp);
+	if(flag == 2)
+	{
+		print_error(WORNG_PARAMETER_2_REAL);
+		return false;
+	}
+
 	print_error(INVALID_ARGS);
 	return false;
 }
