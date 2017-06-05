@@ -14,13 +14,14 @@
 
 int main()
 {
+	int flag;
     command comm;
 
 	menu();
 	init_complexes();
 	printf(LINE);
 	printf("Enter command: \n");
-	while(enter_command(&comm) != EOF)
+	while((flag = enter_command(&comm)) != EOF)
 	{
 		if(strcmp(comm.command, "\0") != 0)
 		{
@@ -29,7 +30,10 @@ int main()
 			printf("Enter command: \n");
 		}
 	}
-	halt(comm.command);
+	if(flag == EOF)
+	{
+		print_error(MISSING_HALT);
+	}
 	return 0;
 }
 
