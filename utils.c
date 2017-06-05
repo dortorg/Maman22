@@ -334,6 +334,8 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 
 	flag = sscanf((args + i), ",%lf", real);
+	printf("-1\n");
+
 	if(flag == 1)
 	{
 		flag = sscanf((args + i), ",%lf,%lf", real, img);
@@ -346,6 +348,7 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 	else
 	{
+		printf("0\n");
 
 		if(status == SUCCESS)
 		{
@@ -412,7 +415,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		}
 		else
 		{
-			printf("eeeee\n");
 
 			print_error(INVALID_ARGS);
 			return false;
