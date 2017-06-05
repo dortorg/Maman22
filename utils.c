@@ -380,8 +380,16 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 							flag = sscanf(token, "%lf", img);
 							if(flag == 1)
 							{
-								print_error(MULTIPLE_COMMAS);
-								return false;
+								if(strlen(args) > 5)
+								{
+									print_error(MULTIPLE_COMMAS);
+									return false;
+								}
+								else
+								{
+									print_error(MISSING_COMMA);
+									return false;
+								}
 							}
 							else
 							{
