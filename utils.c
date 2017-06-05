@@ -328,7 +328,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 	else
 	{
-		printf("eeeee\n");
 
 		print_error(INVALID_ARGS);
 		return false;
@@ -413,10 +412,13 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		}
 		else
 		{
+			printf("eeeee\n");
+
 			print_error(INVALID_ARGS);
 			return false;
 		}
 	}
+
 	print_error(INVALID_ARGS);
 	return false;
 }
