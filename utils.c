@@ -335,7 +335,7 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 
 	flag = sscanf((args), "%c,%lf", &temp, real);
-	printf("%lf\n",real);
+	printf("%lf\n",*real);
 
 	if(flag == 2)
 	{
