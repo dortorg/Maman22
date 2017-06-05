@@ -342,17 +342,58 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	{
 		if(status == SUCCESS)
 		{
-			flag = sscanf((args + i), ",%c,%lf", temp, img);
-			if(flag == 2 && check_A2F(temp) == true)
+			flag = sscanf((args + i), ",%c,%lf", &temp, img);
+			if(flag == 2 && check_A2F(&temp) == true)
 			{
 				print_error(WORNG_PARAMETER_2_REAL);
 				return false;
 			}
-			else
+			if(flag != 2)
 			{
-				print_error(INVALID_ARGS);
-				return false;
+				char* token = strtok(args + 1, ",");
+				if(token != NULL)
+				{
+					flag = sscanf(token, "%lf", img);
+					if(flag == 1)
+					{
+						token = strtok(NULL, ",");
+						if(token != NULL)
+						{
+							flag = sscanf(token, "%lf", img);
+							if(flag == 1)
+							{
+								print_error(MULTIPLE_COMMAS);
+								return false;
+							}
+							else
+							{
+								print_error(INVALID_ARGS);
+								return false;
+							}
+						}
+						else
+						{
+							print_error(INVALID_ARGS);
+							return false;
+						}
+					}
+					else
+					{
+						print_error(INVALID_ARGS);
+						return false;
+					}
+				}
+				else
+				{
+					print_error(INVALID_ARGS);
+					return false;
+				}
 			}
+
+
+			print_error(INVALID_ARGS);
+			return false;
+
 		}
 		else
 		{
