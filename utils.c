@@ -333,7 +333,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		print_error(INVALID_ARGS);
 		return false;
 	}
-	printf("dddddd\n");
 
 	flag = sscanf((args + i), ",%lf", real);
 	if(flag == 1)
@@ -348,6 +347,8 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	{
 		if(status == SUCCESS)
 		{
+			printf("dddddd\n");
+
 			flag = sscanf((args + i), ",%c,%lf", &temp, img);
 			if(flag == 2 && check_A2F(&temp) == true)
 			{
