@@ -35,7 +35,7 @@ int enter_command(command* command)
 
 	if(fgets(str, sizeof(str), stdin) != NULL)
 	{
-		if (str[0] != '\n')
+		if(strcmp(str,"\n") || strcmp(str,"\r\n"))
 		{
 			printf("%s\n",str);
 			token = strtok(str, " \n");
