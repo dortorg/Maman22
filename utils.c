@@ -314,7 +314,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 		{
 			if(compA[0] >= 'G' && compA[0] <= 'Z')
 			{
-				printf("dddddd\n");
 
 				status = INVALID_COMPLEX;
 			}
@@ -330,8 +329,6 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 	else
 	{
-		printf("aaaa\n");
-
 		print_error(INVALID_ARGS);
 		return false;
 	}
@@ -347,6 +344,8 @@ bool check_args_args(char* args, char* compA, double* real, double* img)
 	}
 	else
 	{
+		printf("%d  ddddd\n",status);
+
 		if(status == SUCCESS)
 		{
 
