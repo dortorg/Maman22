@@ -49,13 +49,15 @@ int enter_command(command* command)
 		if(isEmptyLine(str) != true)
 		{
 			printf("%s\n", str);
-			token = strtok(str, " \n");
+			token = strtok(str, " \n\t");
 			strncpy(command->command, token, 50);
+			remove_spaces(command->command);
 			token = strtok(NULL, "\n");
 
 			if(token != NULL)
 			{
 				strncpy(command->args, token, 50);
+				remove_spaces(command->args);
 			}
 			else
 			{
@@ -504,15 +506,12 @@ bool isEmptyLine(const char *s) {
 
 void remove_spaces(char* source)
 {
-  char* i = source;
-  char* j = source;
-  while(*j != 0)
-  {
-    *i = *j++;
-    if(*i != ' ')
-      i++;
-  }
-  *i = 0;
+	char *write = source, *read = source;
+	do {
+	   // Skip space and tab
+	   if (*read != ' ' && *read != '\t')
+	       *(write++) = *read;
+	} while (*(read++));
 }
 
 void halt(char* command)
